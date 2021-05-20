@@ -1,0 +1,150 @@
+Encapsulation in java:
+In generally in capsule consists of vitamin and medicine is there. It is wrpping in container. That container is called capsule.It wrpping out evering in single unit(including vitamin, medicine).
+Same concept we can apply to our java also.
+class A{
+//class is working as container. class contains data memebers and methods.
+int i=10;
+void m1(){
+}
+}
+Why we need Encapsulation? if we did'nt implement this excapsulation what will happend?
+Lets assume that i have a bank
+i am just creating a class here
+class bank{
+//who ever come to my bank like customer, i want to store 4 details.
+int acNo;
+String name;
+double bal;
+String address;
+what ever information he have, i have to store it in database.
+ 
+one person came to the bank. He is intrested to deposite 20,000 amount in the bank. His name is singam. After completed the process ,
+int acNo=100;
+String name="Singam";
+double bal=20000;
+String address=India;
+ i told to the singam you can access to the data any time by using the netbanking app.
+He went to his home. He just want to check the balence enquiry.
+
+class Netbanking{
+psvm{
+Bank user= new Bank();
+s.o.p(user.bal); //20,000
+Now the user move to USA. So he want to change his address.
+user.address="USA";
+if he changing the address, he can think why can't i modify the balence. He will do like below.
+user.bal=50,000; He save this change.
+Now the the changes are saved in database.
+One day i observed he  deposited 20,000. But now how it become 50,000. I understood he changed the balence amount.
+The problem here is the bank data (varaiables) is accessing from outside of the bank. Like accesiing from netbanking class.
+If any one can change the data , it is not looks good. One day i will become a beggar.
+I found i need to provide some security for my data. No one should not able to acess the data from outside of the bank class.
+To proovide security for the data in java, we have to declare the private accessspecifier for the data members. If we make it private, nobody can able to access out side of the class. Inside the class i can able to access.
+class bank{
+private int acNo;
+private String name;
+private double bal;
+private String address;
+}
+
+The user move to USA. So he want to change the address. when he is trying to change the addreess he will get an error. Becasue there is a accesslimitation is there.
+So agaian i hava think  and decided to i have to give read permissions for few data. and read and write permission for few data.
+For acNo i have given read access .
+For Address i have given read and write access.
+For balence no should not change. So i have given read access only.
+For name i have give read and write access. B'coz if there is any spelling mustakes they can able to change on himself.
+ If i want to access those private varaiables i have to use accessor methods. By using getter and setter methods i can able to access the data from out side of the class by calling those setter and getter methods.
+
+class Mobile{
+	
+	private int noOfCamers;
+	private int noOfButtons;
+	private String processor;
+	
+	Mobile(int noOfCamers, int noOfButtons,String processor){
+		this.noOfButtons=noOfCamers;
+		this.noOfCamers=noOfButtons;
+		this.processor=processor;
+	}
+	
+	public void powerOn() {
+		System.out.println("start");
+	}
+	
+	public String toString() {
+		
+		String temp="OneplusFeatures \n";
+		temp= temp+ " count of cameras:"+this.noOfCamers+ "\n";
+		temp=temp+ "count of buttons:"+ this.noOfButtons+"\n";
+		temp= temp+"oneplusprocess is:"+this.processor;
+		
+		return temp;
+	}
+	public int getNoOfButtons() {
+		return noOfButtons;
+	}
+	public void setNoOfButtons(int noOfButtons) {
+		this.noOfButtons = noOfButtons;
+	}
+	public int getNoOfCamers() {
+		return noOfCamers;
+	}
+	public void setNoOfCamers(int noOfCamers) {
+		this.noOfCamers = noOfCamers;
+	}
+	public String getProcessor() {
+		return processor;
+	}
+	public void setProcessor(String processor) {
+		this.processor = processor;
+	}
+	
+}
+class Oneplus extends Mobile{
+	
+	Oneplus(int noOfCamers,int noOfButtons, String processor){
+		
+		super(noOfCamers, noOfButtons, processor);
+		
+	}
+	
+	
+}
+
+public class MobileEncap  {
+
+	public static void main(String[] args) {
+		Oneplus op= new Oneplus(4,4,"intel");
+		Object tc=  (Mobile)op;  // 1 way of typecasting (Upcasting)
+		System.out.println(tc.toString());
+		Mobile me=  new Oneplus(3,2,"qualcome"); // 2nd way of upcasting
+		me.getNoOfButtons();
+		me.getNoOfCamers();
+		me.getProcessor();
+		System.out.println(me.toString());
+		
+		System.out.println("input from setters: \n");
+		me.setNoOfButtons(1);
+		me.setNoOfCamers(1);
+		me.setProcessor("linux");
+	
+		System.out.println(me.toString());
+
+
+	}
+}
+
+To achieve the encapsulation:
+•	Declare the variables as private in class. 
+•	Provide public  getter and setter methods to modify and view the values of variables.
+•	The public getter and setter methods are accessing point to access the instance varaiables. Thorugh this methods we can access the data from outside of the class based on the access level.
+Advantages:
+1. we can achieve security.
+2. Maintainability will be improved.
+
+Due to encapsulation what we are going to miss here?
+For every varaiable we have to provider getter and setter methods.Due to of that length of the code increased. Execution time will be more. performence decreased. 
+
+
+
+
