@@ -1,0 +1,211 @@
+Abstraction in java:
+Abstarction is the process of hiding the internal implementation  details and just highlighting the set of services which we are going to offer to the user.(showing only functionality to the user).
+or
+It is the process of showing the essential things to the user and hides the internal details.
+Example: In a car case, relevant parts like stearing, gear, horn, accelerator, breaks...etc are shown to the driver. But driver need not know the about the internal structure of engine, gear etc.
+Thus showing the relavent data to the user and hiding the implementation details. that is called Abstarction.
+In java we can achive abstarction in two ways.
+1. through abstarction ( we achive only 0 -100%).
+2. through interfaces.(100%)
+car                                                                                   
+|
+|
+nooftyres=4;
+|
+|
+start()
+{
+s.o.p("start with key");
+}
+
+Scooter
+|
+|
+nooftyres=2;
+|
+|
+start()
+{
+s.o.p("start with kick");
+}
+
+Here varaiable is same and method name is same but different implementation.
+//ABSTRACT CLASSES
+//An abstract class only has method declarations. it is intended to be
+//a superclass for other classes. It doesn't define how methods are
+//implemented, only that they are implemented. Abstract classes cannot
+//be instantiated and subclasses MUST implement abstract methods.
+abstract class Vehicle {
+
+	int nooftyres;
+
+	abstract String start();
+
+	public abstract String toString();
+}
+
+class Car extends Vehicle {
+
+	Car(int nooftyres) {
+		this.nooftyres = nooftyres;
+	}
+
+	@Override
+	public String start() {
+		// System.out.println("start with key");
+		return "start with key";
+	}
+
+	public String toString() {
+		return "nooftyres:" + nooftyres + "......" + start();
+
+	}
+
+	public void carinfo() {
+		System.out.println("car has breaks, accelator,horn");
+	}
+}
+
+class Scooter extends Vehicle {
+
+	Scooter(int nooftyres) {
+		this.nooftyres = nooftyres;
+	}
+
+	@Override
+	String start() {
+
+		return "strat with kick";
+	}
+
+	@Override
+	public String toString() {
+
+		return "nooftyres:" + nooftyres + "..." + start();
+	}
+
+}
+
+public class TestVehicle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Vehicle v = new Car(4);
+		v.start();
+		System.out.println(v.toString());
+
+		Vehicle v1 = new Scooter(2);
+		v1.start();
+		System.out.println(v1.toString());
+
+	}
+
+}
+
+Abstarct class in java:
+A class which is declared as abstraction is called abstract class.
+In abstract class can have both abstract methods and concrete methods.(it allow).
+Abstract methods do not have implementation and body. It needs to be extended and implemented in child classes.
+
+Keys points for abstarct class:
+•	An abstarct class must be declared with abstract keyword.
+•	It can have abstract and non-abstract methods
+•	It can not be instantiated.
+•	It can have constructors and static methods also.
+•	it can have final methods (we should not override in child classes).
+ Summery:
+1.	Abstarct methods in an abstarct class are meant to be overridden in derived concrete class, otherwise compilation error will be thrown.
+if the normal class can extends the abstarct class, we must have to override  all the abstart methods( means provide implementation) of abstarct parent class.
+
+2.	For abstract class we should not create object.
+
+Advantages of Abstarct class:
+1. It provide security.(By using the abstract class and methods we are not sharing(exposing) the internal implementation details to any one.)
+2. Avoid code duplication and increase the code reusability .
+
+Abstract method in java:
+
+A method which is declared as abstarct and do not have implementation is know as abstract method.
+
+2.Example:
+
+abstract class Bank {
+
+	abstract double rateOfIntrest();
+
+	public void deposite() {
+		System.out.println("1000");
+	}
+
+	public void withDraw() {
+		System.out.println("500");
+	}
+}
+
+class SBI extends Bank {
+
+	@Override
+	double rateOfIntrest() {
+
+		return 6.05;
+	}
+
+	public void deposite() {
+		System.out.println(" SBI deposite:2000");
+	}
+
+	public void withDraw() {
+		System.out.println(" SBI withDraw:1000");
+	}
+
+}
+
+class Axis extends Bank {
+
+	@Override
+	double rateOfIntrest() {
+
+		return 8.05;
+	}
+
+	public void deposite() {
+		System.out.println(" Axis deposite:4000");
+	}
+
+	public void withDraw() {
+		System.out.println(" Axis withDraw:2000");
+	}
+
+}
+public class TestBank {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Bank sbi = new SBI();
+		System.out.println(sbi.rateOfIntrest());
+		sbi.deposite();
+		sbi.withDraw();
+
+		Bank axis = new Axis();
+		System.out.println(axis.rateOfIntrest());
+		axis.deposite();
+		axis.withDraw();
+	}
+
+}
+
+output:
+6.05
+ SBI deposite:2000
+ SBI withDraw:1000
+8.05
+ Axis deposite:4000
+ Axis withDraw:2000
+
+
+
+
+
+
+
+
